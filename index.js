@@ -56,6 +56,22 @@ const app = new Vue({
             this.lista = array2
             return this.array
         },
+        VerTodosProductos(){
+            this.lista = productos
+            return this.array
+        },
+        VerPs4(){
+            let array2 = this.lista.filter(item => item.consola == 'PS4')
+            console.log(array2)
+            this.lista = array2
+            return this.array
+        },
+        VerXboxOne(){
+            let array2 = this.lista.filter(item => item.consola == 'Xbox One')
+            console.log(array2)
+            this.lista = array2
+            return this.array
+        },
 
     }
 });
