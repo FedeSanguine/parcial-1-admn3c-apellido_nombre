@@ -45,5 +45,17 @@ const app = new Vue({
             console.log('Se ha enviado la información');
         },
 
+        ordenarMenor(){
+            let array2 = this.lista
+            let array3  = array2.sort((a, b) => (a.precio > b.precio) ? 1 : -1)
+            return array3
+        },
+        ordenarMayor(){
+            let array2 = this.lista.sort((a, b) => (a.precio < b.precio) ? 1 : -1)
+            console.log(array2)
+            this.lista = array2
+            return this.array
+        },
+
     }
 });
