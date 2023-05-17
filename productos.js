@@ -1,7 +1,7 @@
 let productos = [
     {
         nombre: "Call of Duty Modern Warfare",
-        descripción: "...",
+        descripcion: "...",
         precio: 10000,
         imagen: "",
         imagen_descripción: "",
@@ -11,7 +11,7 @@ let productos = [
     },
     {
         nombre: "GTA V",
-        descripción: "...",
+        descripcion: "...",
         precio: 10000,
         imagen: "",
         imagen_descripción: "",
@@ -21,7 +21,7 @@ let productos = [
     },
     {
         nombre: "Battlefield V",
-        descripción: "...",
+        descripcion: "...",
         precio: 10000,
         imagen: "",
         imagen_descripción: "",
@@ -31,7 +31,7 @@ let productos = [
     },
     {
         nombre: "Mortal Kombat 11",
-        descripción: "...",
+        descripcion: "...",
         precio: 10000,
         imagen: "",
         imagen_descripción: "",
@@ -41,10 +41,10 @@ let productos = [
     },
     {
         nombre: "Fifa 22",
-        descripción: "...",
+        descripcion: "...",
         precio: 10000,
         imagen: "",
-        imagen_descripción: "",
+        imagen_descripcion: "",
         consola: 'PS4',
         cant: 1,
         id: 4
@@ -54,7 +54,7 @@ let productos = [
         descripción: "...",
         precio: 10000,
         imagen: "",
-        imagen_descripción: "",
+        imagen_descripcion: "",
         consola: 'PS4',
         cant: 1,
         id: 5
