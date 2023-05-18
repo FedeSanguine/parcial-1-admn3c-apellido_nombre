@@ -6,7 +6,7 @@ let productos = [
         imagen: "",
         imagen_descripción: "",
         consola: 'Xbox One',
-        cant: 1,
+        cantidad: 1,
         id: 0
     },
     {
@@ -26,7 +26,7 @@ let productos = [
         imagen: "",
         imagen_descripción: "",
         consola: 'Xbox One',
-        cant: 1,
+        cantidad: 1,
         id: 2
     },
     {
@@ -36,7 +36,7 @@ let productos = [
         imagen: "",
         imagen_descripción: "",
         consola: 'PS4',
-        cant: 1,
+        cantidad: 1,
         id: 3
     },
     {
@@ -46,7 +46,7 @@ let productos = [
         imagen: "",
         imagen_descripcion: "",
         consola: 'PS4',
-        cant: 1,
+        cantidad: 1,
         id: 4
     },
     {
@@ -56,7 +56,7 @@ let productos = [
         imagen: "",
         imagen_descripcion: "",
         consola: 'PS4',
-        cant: 1,
+        cantidad: 1,
         id: 5
     },
     

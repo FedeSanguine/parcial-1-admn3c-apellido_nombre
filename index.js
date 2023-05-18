@@ -7,11 +7,22 @@ const app = new Vue({
         lista: productos,
         producto: '',
         array: [],
+        nombreProducto: '',
+        idProducto: 0,
+        descripcionProducto: '',
+        precioProducto: 0,
+        imagenProducto: '',
+        consolaProducto: '',
+        cantidadProducto: 1,
+        cantidad: 0,
+        indice: -1,
+        array: [],
         links: [
             {text: 'Home', url: '/home', enable: true, active: true},
             {text: 'Mi perfil', url: '/about', enable: false, active: false},
             {text: 'Configuraciones', url: '/contact', enable: false, active: false},
         ],
+
     },
 
 
@@ -72,6 +83,49 @@ const app = new Vue({
             this.lista = array2
             return this.array
         },
+        guardarProductos(){
+            let arrayString = JSON.stringify(this.lista);
+            localStorage.setItem('productos', arrayString);
+        },
+        leerProductos(){
+            let datosGuardados = localStorage.getItem('productos');
+            if(datosGuardados){
+                this.lista = JSON.parse(datosGuardados);
+            } else{
+                this.lista = productos;
+            }
+            
+        },
+
+        agregarProductos(){
+            console.log('funciono')
+            this.lista.push({
+                nombre: this.nombreProducto,
+                precio: this.precioProducto,
+                descripcion: this.descripcionProducto,
+                imagen: this.imagenProducto,
+                consola: this.consolaProducto,
+                cantidad: this.cantidadProducto,
+                id: this.contador()
+            });
+            console.log(this.lista)
+            this.nombreProducto = '',
+            this.precioProducto = '',
+            this.descripcionProducto = '',
+            this.imagenProducto = '',
+            this.consolaProducto= ''
+            this.guardarProductos();
+            console.log(this.lista)
+            return this.lista
+        
+    },
+    contador(){
+        this.idProducto = this.lista.length - 1
+        this.idProducto++
+        
+    console.log(this.idProducto)
+    return this.idProducto
+}
 
     }
 });
