@@ -22,7 +22,7 @@ let productos = [
     {
         nombre: "Battlefield V",
         descripcion: "...",
-        precio: 10000,
+        precio: 11000,
         imagen: "",
         imagen_descripción: "",
         consola: 'Xbox One',
@@ -32,7 +32,7 @@ let productos = [
     {
         nombre: "Mortal Kombat 11",
         descripcion: "...",
-        precio: 10000,
+        precio: 12000,
         imagen: "",
         imagen_descripción: "",
         consola: 'PS4',

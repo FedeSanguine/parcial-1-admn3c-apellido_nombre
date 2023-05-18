@@ -18,16 +18,36 @@ const app = new Vue({
         indice: -1,
         array: [],
         links: [
-            {text: 'Home', url: '/home', enable: true, active: true},
-            {text: 'Mi perfil', url: '/about', enable: false, active: false},
-            {text: 'Configuraciones', url: '/contact', enable: false, active: false},
+            { text: 'Home', url: '/home', enable: true, active: true },
+            { text: 'Mi perfil', url: '/about', enable: false, active: false },
+            { text: 'Configuraciones', url: '/contact', enable: false, active: false },
         ],
+        beforeMount() {
+            console.log("Se va a montar el componente");
+        },
+        mounted() {
+            console.log("Se ha montado el componente");
+            const isLogin = JSON.parse(localStorage.getItem('login'));
+            const mensaje = localStorage.getItem('mensaje');
+            if(mensaje) {
+                this.mensaje = mensaje;
+            }
+            if(isLogin) { //"true", "false" -> true
+                this.login = true;
+            }
+        },
+        destroyed() {
+            console.log('Se ha destruido el componente');
+        },
+        beforeCreate() {
+            console.log('Se ha creado el componente');
+        },
 
     },
 
 
-    computed:{
-        productosFiltrados(){
+    computed: {
+        productosFiltrados() {
             this.array = this.lista.filter(item => item.nombre.toLowerCase().includes(this.producto.toLowerCase()));
             console.log(this.array, 'array')
             console.log(this.lista, 'lista')
@@ -47,7 +67,7 @@ const app = new Vue({
             this.ocultarPanelLogin();
         },
         toogleLogin() {
-            if(!this.login) {
+            if (!this.login) {
                 this.mostrarPanelLogin();
             }
             this.login = !this.login;
@@ -56,48 +76,48 @@ const app = new Vue({
             console.log('Se ha enviado la información');
         },
 
-        ordenarMenor(){
+        ordenarMenor() {
             let array2 = this.lista
-            let array3  = array2.sort((a, b) => (a.precio > b.precio) ? 1 : -1)
+            let array3 = array2.sort((a, b) => (a.precio > b.precio) ? 1 : -1)
             return array3
         },
-        ordenarMayor(){
+        ordenarMayor() {
             let array2 = this.lista.sort((a, b) => (a.precio < b.precio) ? 1 : -1)
             console.log(array2)
             this.lista = array2
             return this.array
         },
-        VerTodosProductos(){
+        VerTodosProductos() {
             this.lista = productos
             return this.array
         },
-        VerPs4(){
+        VerPs4() {
             let array2 = this.lista.filter(item => item.consola == 'PS4')
             console.log(array2)
             this.lista = array2
             return this.array
         },
-        VerXboxOne(){
+        VerXboxOne() {
             let array2 = this.lista.filter(item => item.consola == 'Xbox One')
             console.log(array2)
             this.lista = array2
             return this.array
         },
-        guardarProductos(){
+        guardarProductos() {
             let arrayString = JSON.stringify(this.lista);
             localStorage.setItem('productos', arrayString);
         },
-        leerProductos(){
+        leerProductos() {
             let datosGuardados = localStorage.getItem('productos');
-            if(datosGuardados){
+            if (datosGuardados) {
                 this.lista = JSON.parse(datosGuardados);
-            } else{
+            } else {
                 this.lista = productos;
             }
-            
+
         },
 
-        agregarProductos(){
+        agregarProductos() {
             console.log('funciono')
             this.lista.push({
                 nombre: this.nombreProducto,
@@ -110,22 +130,22 @@ const app = new Vue({
             });
             console.log(this.lista)
             this.nombreProducto = '',
-            this.precioProducto = '',
-            this.descripcionProducto = '',
-            this.imagenProducto = '',
-            this.consolaProducto= ''
+                this.precioProducto = '',
+                this.descripcionProducto = '',
+                this.imagenProducto = '',
+                this.consolaProducto = ''
             this.guardarProductos();
             console.log(this.lista)
             return this.lista
-        
-    },
-    contador(){
-        this.idProducto = this.lista.length - 1
-        this.idProducto++
-        
-    console.log(this.idProducto)
-    return this.idProducto
-}
+
+        },
+        contador() {
+            this.idProducto = this.lista.length - 1
+            this.idProducto++
+
+            console.log(this.idProducto)
+            return this.idProducto
+        }
 
     }
 });
