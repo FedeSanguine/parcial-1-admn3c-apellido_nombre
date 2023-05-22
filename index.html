@@ -85,9 +85,31 @@
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <div class="dropdown center">
+                            <button class="btn bg-n dropdown-toggle color" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Carrito
+                              <span v-text="carritoCompras" class="badge badge-pill"></span>
+                            </button>
+                            
+                            <div class="dropdown-menu px-3 py-3 bg-n">
+                                <div>
+                                    <span class="color">Total</span>
+                                    <span v-text="` $`+totalCarrito" class="color"></span>
+                                </div>
+                              <div v-for="(item,index) in carrito">
+                                <div class="mt-2 mb-2 width">
+                                    <span class="badge badge-pill">cantidad: {{item.cantidad}}</span><span v-text="item.nombre" class="color"></span> <span v-text="` $` + item.precio * item.cantidad" class="color"></span> <span><button class="btn" v-on:click="borrarCarrito(index)">❌</button></span>
+                                </div>
+                                
+                            </div>
+                            </div>
+                          </div>
+        
+                    </div>
                 </div>
             <div class="d-flex"  v-if="enable || login">
-                <button type="button" class="btn bg-n color mx-2 flex-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn bg-n color mx-2 flex-center mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Agregar producto
                   </button>
                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -135,7 +157,7 @@
                         <input type="number" class="form-control mt-2" placeholder="precio" v-model.number="precioProducto">
                         <input type="text" class="form-control mt-2" placeholder="imagen"  v-model="imagenProducto">
                         <p v-text="texto"></p>
-                        <button v-on:click="modificarProductos()" class="btn btn-outline-success mt-4" type="button"><i class="fa-solid fa-cart-plus"></i> Modificar</button>
+                        <button v-on:click="modificarProductos()" class="btn btn-outline-success mt-4 " type="button"><i class="fa-solid fa-cart-plus"></i> Modificar</button>
                     </div>
                     <div class="modal-footer">
                       <button class="btn btn-primary" data-bs-target="#exampleModal2" data-bs-toggle="modal">Volver al primero</button>
@@ -143,7 +165,7 @@
                   </div>
                 </div>
                 </div>
-                <button type="button" class="btn bg-n color mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                <button type="button" class="btn bg-n color mx-2 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                 Modificar productos
                 </button>
                 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
@@ -196,6 +218,7 @@
                                 <li class="list-group-item"><span class="fw-bold">Consola: </span>{{item['consola']}}
                                 </li>
                                 <li class="list-group-item"><span class="fw-bold">Precio: </span>{{item['precio']}}</li>
+                                <button v-on:click="agregarCarrito(item)" v-bind:data-id="item['producto_id']" class="btn btn-success m-auto mt-3 mb-3"> Agregar al carrito </button>
                             </ul>
                         </div>
                     </div>

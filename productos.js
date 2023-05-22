@@ -12,11 +12,11 @@ let productos = [
     {
         nombre: "GTA V",
         descripcion: "...",
-        precio: 10000,
+        precio: 11000,
         imagen: "",
         imagen_descripción: "",
         consola: 'Xbox One',
-        cant: 1,
+        cantidad: 1,
         id: 1
     },
     {
