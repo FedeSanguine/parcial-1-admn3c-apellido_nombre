@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="index.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/logo.png" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
     <script src="./components/boton-ordenar.js"></script>
     <script src="./components/ventana-login.js"></script>
@@ -35,7 +36,10 @@
     <div id="contenedor">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark flex-has-center">
             <div class=" flex-center container">
-                <a class="navbar-brand" href="#">TP1</a>
+                <a class="navbar-brand" href="#"></a>
+                <figure>
+                    <img src="img/logo.png" alt="logo gxgames">
+                </figure>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
                     aria-controls="navbar" aria-expanded="false" aria-label="Abrir/cerrar menú de navegación">
                     <span class="navbar-toggler-icon"></span>
@@ -209,7 +213,7 @@
                 <div class="row">
                     <div class="col-md-6 col-lg-3 col-xs-12 mb-3 px-3" v-for="(item, index) in productosFiltrados">
                         <div class="card mb-3 h-100 rounded-4 border-dark">
-                            <img class="p-3 card-img rounded-4 border-dark" src="">
+                            <img v-bind:src="item['imagen']" alt="" class="p-3 card-img rounded-4 border-dark">
                             <div class="card-body h-100">
                                 <p class="fs-5 fw-bold text-center">{{item['nombre']}} para {{item['consola']}}</p>
                                 <p class="card-text">{{item['descripcion']}}</p>
