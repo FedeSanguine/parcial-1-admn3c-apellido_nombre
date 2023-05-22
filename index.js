@@ -2,6 +2,7 @@
 const app = new Vue({
     el: '#contenedor',
     data: {
+        enable: false,
         panelLoginVisible: false,
         login: false,
         lista: productos,
@@ -15,7 +16,9 @@ const app = new Vue({
         consolaProducto: '',
         cantidadProducto: 1,
         cantidad: 0,
+        inde: 0,
         indice: -1,
+        texto: '',
         array: [],
         links: [
             { text: 'Home', url: '/home', enable: true, active: true },
@@ -28,11 +31,8 @@ const app = new Vue({
         mounted() {
             console.log("Se ha montado el componente");
             const isLogin = JSON.parse(localStorage.getItem('login'));
-            const mensaje = localStorage.getItem('mensaje');
-            if(mensaje) {
-                this.mensaje = mensaje;
-            }
-            if(isLogin) { //"true", "false" -> true
+            console.log(isLogin)
+            if(isLogin) {
                 this.login = true;
             }
         },
@@ -64,13 +64,17 @@ const app = new Vue({
         },
         iniciarSesion() {
             this.login = true;
+            localStorage.setItem('login', 'true');
             this.ocultarPanelLogin();
         },
         toogleLogin() {
-            if (!this.login) {
+            if(!this.login) {
                 this.mostrarPanelLogin();
+            } else {
+                console.log('Se ha cerrado la sesión');
+                localStorage.setItem('login', 'false');
+                this.login = false;
             }
-            this.login = !this.login;
         },
         envioDeInformacion() {
             console.log('Se ha enviado la información');
@@ -136,9 +140,81 @@ const app = new Vue({
                 this.consolaProducto = ''
             this.guardarProductos();
             console.log(this.lista)
+            localStorage.setItem('productos')
             return this.lista
 
         },
+
+        modificar(index){
+            console.log(index)
+            let productoModal = this.lista[index]
+            this.nombreProducto = productoModal.nombre
+            this.precioProducto = productoModal.precio
+            this.descripcionProducto = productoModal.descripcion
+            this.imagenProducto = productoModal.imagen
+            this.consolaProducto = productoModal.consola
+            this.inde = index
+            return (this.lista, this.inde)
+        },
+
+        modificarProductos(){
+            
+            console.log(this.inde)
+            this.lista.forEach((value, indice) =>{
+                if(this.inde == indice){
+                    this.lista[this.inde]= {
+                        nombre: this.nombreProducto,
+                        precio: this.precioProducto,
+                        descripcion: this.descripcionProducto,
+                        imagen: this.imagenProducto,
+                        consola: this.consolaProducto,
+                        id: value.id,
+                        cant: value.cantidad
+                    }
+                    console.log('esta funcionando y cargandose bien')
+                    this.array[this.inde]= {
+                        nombre: this.nombreProducto,
+                        precio: this.precioProducto,
+                        descripcion: this.descripcionProducto,
+                        imagen: this.imagenProducto,
+                        consola: this.consolaProducto,
+                        id: value.id,
+                        cant: value.cantidad
+                    }
+                }
+            }),
+            
+            this.nombreProducto = '',
+            this.precioProducto = '',
+            this.descripcionProducto = '',
+            this.imagenProducto = '',
+            this.indice = -1,
+            this.categoria= ''
+            console.log(this.indice)
+            this.guardarProductos();
+            return (this.lista, this.array) 
+        },
+        cerrar(){
+            return (this.nombreProducto = '',
+            this.precioProducto = '',
+            this.descripcionProducto = '',
+            this.imagenProducto = '',
+            this.indice = -1,
+            this.categoria= '')
+        },
+        borrar(index){
+            this.lista.forEach((valor2, indice3) => {
+                console.log(index == indice3)
+                let array3
+                if(index == indice3){
+                    array3 = this.lista.splice(index,1)
+
+                }
+            })
+            this.guardarProductos()
+            return this.lista
+        },
+
         contador() {
             this.idProducto = this.lista.length - 1
             this.idProducto++

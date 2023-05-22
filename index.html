@@ -115,6 +115,74 @@
                       </div>
                     </div>
                   </div>
+
+
+            <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1" v-on:keyup.esc="cerrar">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalToggleLabel2">Producto a modificar</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" v-on:click="cerrar" ></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="form-control mt-2" placeholder="nombre" v-model="nombreProducto">
+                        <input type="text" class="form-control mt-2" placeholder="descripcion" v-model="descripcionProducto">
+                        <select class="form-select mt-2" aria-label="Default select example" v-model="consolaProducto">
+                          <option disabled selected>Elegi una consola</option>
+                          <option value="PS4">PS4</option>
+                          <option value="Xbox One">Xbox One</option>
+                        </select>
+                        <input type="number" class="form-control mt-2" placeholder="precio" v-model.number="precioProducto">
+                        <input type="text" class="form-control mt-2" placeholder="imagen"  v-model="imagenProducto">
+                        <p v-text="texto"></p>
+                        <button v-on:click="modificarProductos()" class="btn btn-outline-success mt-4" type="button"><i class="fa-solid fa-cart-plus"></i> Modificar</button>
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-primary" data-bs-target="#exampleModal2" data-bs-toggle="modal">Volver al primero</button>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                <button type="button" class="btn bg-n color mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                Modificar productos
+                </button>
+                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel2">Producto a modificar</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <div>
+                    <ul v-for="(item,index) in lista">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="m-w">{{item.nombre}}</td>
+                                    <td>{{item.precio}}</td>
+                                    <td>
+                                        <button class="btn btn-secondary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" v-on:click="modificar(index)">✏</button>
+                                    </td>
+                                    <td><button class="btn btn-secondary" v-on:click="borrar(index)">❌</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ul>
+                </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </div>
+                </div>
+                </div>
             </div>
                 <div class="row">
                     <div class="col-md-6 col-lg-3 col-xs-12 mb-3 px-3" v-for="(item, index) in productosFiltrados">
