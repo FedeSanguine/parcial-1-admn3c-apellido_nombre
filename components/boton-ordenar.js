@@ -20,8 +20,8 @@ Vue.component('boton-ordenar', {
 </div>
     `,
     props: ['ordenarMenor', 'ordenarMayor'],
-    
-    data: function(){
+
+    data: function () {
         return {
         }
     }

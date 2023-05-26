@@ -34,7 +34,7 @@ const app = new Vue({
             console.log("Se ha montado el componente");
             const isLogin = JSON.parse(localStorage.getItem('login'));
             console.log(isLogin)
-            if(isLogin) {
+            if (isLogin) {
                 this.login = true;
             }
         },
@@ -55,17 +55,17 @@ const app = new Vue({
             console.log(this.lista, 'lista')
             return this.array
         },
-        carritoCompras(){
+        carritoCompras() {
             let acum2 = 0
-            for(let i of this.carrito){
+            for (let i of this.carrito) {
                 acum2 += i.cantidad
             }
             return acum2
-            
+
         },
-        totalCarrito(){
+        totalCarrito() {
             let acum = 0;
-            for(let precios of this.carrito){
+            for (let precios of this.carrito) {
                 acum += precios.precio * precios.cantidad
             }
             return acum
@@ -85,7 +85,7 @@ const app = new Vue({
             this.ocultarPanelLogin();
         },
         toogleLogin() {
-            if(!this.login) {
+            if (!this.login) {
                 this.mostrarPanelLogin();
             } else {
                 console.log('Se ha cerrado la sesión');
@@ -138,25 +138,25 @@ const app = new Vue({
 
         },
 
-        agregarCarrito(item){
+        agregarCarrito(item) {
             let prodExistente;
-            let existente = this.carrito.filter((item2, index2)=>{
-                if(item2.id == Number(item.id)){
+            let existente = this.carrito.filter((item2, index2) => {
+                if (item2.id == Number(item.id)) {
                     prodExistente = index2;
                     return true;
-                }else{
+                } else {
                     return false
                 }
             })
 
-                if(existente.length){
-                    this.carrito[prodExistente].cantidad++
-                    this.carrito[prodExistente].precio = item['precio']
-                    this.carrito[prodExistente].nombre = item['nombre']
-                }else{
-                    this.carrito.push({nombre: item.nombre, precio: item['precio'], cantidad: item['cantidad'], id: item['id']})
-                    console.log(this.carrito)
-                }
+            if (existente.length) {
+                this.carrito[prodExistente].cantidad++
+                this.carrito[prodExistente].precio = item['precio']
+                this.carrito[prodExistente].nombre = item['nombre']
+            } else {
+                this.carrito.push({ nombre: item.nombre, precio: item['precio'], cantidad: item['cantidad'], id: item['id'] })
+                console.log(this.carrito)
+            }
         },
 
         agregarProductos() {
@@ -183,7 +183,7 @@ const app = new Vue({
 
         },
 
-        modificar(index){
+        modificar(index) {
             console.log(index)
             let productoModal = this.lista[index]
             this.nombreProducto = productoModal.nombre
@@ -195,12 +195,12 @@ const app = new Vue({
             return (this.lista, this.inde)
         },
 
-        modificarProductos(){
-            
+        modificarProductos() {
+
             console.log(this.inde)
-            this.lista.forEach((value, indice) =>{
-                if(this.inde == indice){
-                    this.lista[this.inde]= {
+            this.lista.forEach((value, indice) => {
+                if (this.inde == indice) {
+                    this.lista[this.inde] = {
                         nombre: this.nombreProducto,
                         precio: this.precioProducto,
                         descripcion: this.descripcionProducto,
@@ -210,7 +210,7 @@ const app = new Vue({
                         cantidad: value.cantidad
                     }
                     console.log('esta funcionando y cargandose bien')
-                    this.array[this.inde]= {
+                    this.array[this.inde] = {
                         nombre: this.nombreProducto,
                         precio: this.precioProducto,
                         descripcion: this.descripcionProducto,
@@ -221,32 +221,32 @@ const app = new Vue({
                     }
                 }
             }),
-            
-            this.nombreProducto = '',
-            this.precioProducto = '',
-            this.descripcionProducto = '',
-            this.imagenProducto = '',
-            this.indice = -1,
-            this.categoria= ''
+
+                this.nombreProducto = '',
+                this.precioProducto = '',
+                this.descripcionProducto = '',
+                this.imagenProducto = '',
+                this.indice = -1,
+                this.categoria = ''
             console.log(this.indice)
             this.guardarProductos();
             localStorage.setItem('productos')
-            return (this.lista, this.array) 
+            return (this.lista, this.array)
         },
-        cerrar(){
+        cerrar() {
             return (this.nombreProducto = '',
-            this.precioProducto = '',
-            this.descripcionProducto = '',
-            this.imagenProducto = '',
-            this.indice = -1,
-            this.categoria= '')
+                this.precioProducto = '',
+                this.descripcionProducto = '',
+                this.imagenProducto = '',
+                this.indice = -1,
+                this.categoria = '')
         },
-        borrar(index){
+        borrar(index) {
             this.lista.forEach((valor2, indice3) => {
                 console.log(index == indice3)
                 let array3
-                if(index == indice3){
-                    array3 = this.lista.splice(index,1)
+                if (index == indice3) {
+                    array3 = this.lista.splice(index, 1)
 
                 }
             })
@@ -254,11 +254,11 @@ const app = new Vue({
             return this.lista
         },
 
-        borrarCarrito(index){
+        borrarCarrito(index) {
             let array4
             this.carrito.forEach((valor3, indice4) => {
-                if(index == indice4){
-                    array4 = this.carrito.splice(index,1)
+                if (index == indice4) {
+                    array4 = this.carrito.splice(index, 1)
                 }
             })
             return array4

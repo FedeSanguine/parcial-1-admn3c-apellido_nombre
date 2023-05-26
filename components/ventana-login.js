@@ -32,7 +32,7 @@ Vue.component('ventana-login', {
         console.log("Se va a actualizar el componente");
         console.log(this.panelLoginVisible);
     },
-    data: function(){
+    data: function () {
         return {
         }
     }
